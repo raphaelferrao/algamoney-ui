@@ -1,0 +1,5 @@
+0) Instalar angular-cli via npm
+
+1) Para criar um projeto angular: ng new nome_projeto
+
+2)
