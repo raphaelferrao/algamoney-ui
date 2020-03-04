@@ -6,10 +6,11 @@ import { AppComponent } from './app.component';
 import {TableModule} from 'primeng/table';
 import {TooltipModule} from 'primeng/tooltip';
 import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos-pesquisa.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 
 @NgModule({
-  declarations: [AppComponent, LancamentosPesquisaComponent],
+  declarations: [AppComponent, LancamentosPesquisaComponent, NavbarComponent],
   imports: [BrowserModule, InputTextModule, ButtonModule, TableModule, TooltipModule],
   providers: [],
   bootstrap: [AppComponent]
