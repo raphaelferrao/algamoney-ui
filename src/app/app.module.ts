@@ -5,10 +5,11 @@ import { InputTextModule } from 'primeng/inputtext';
 import { AppComponent } from './app.component';
 import {TableModule} from 'primeng/table';
 import {TooltipModule} from 'primeng/tooltip';
+import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos-pesquisa.component';
 
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, LancamentosPesquisaComponent],
   imports: [BrowserModule, InputTextModule, ButtonModule, TableModule, TooltipModule],
   providers: [],
   bootstrap: [AppComponent]
