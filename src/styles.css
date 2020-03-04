@@ -35,6 +35,5 @@ label {
 }
 
 .col-acoes > * {
-  margin-left: 2px !important;
-  margin-right: 2px !important;
+  margin: 1px !important;
 }
