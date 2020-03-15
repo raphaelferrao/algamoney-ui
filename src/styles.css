@@ -16,21 +16,23 @@ label {
 
 /* styles primeNG */
 .col-valor-header {
-  width: 120px;
+  width: 15%;
 }
 .col-valor-content {
   text-align: right;
 }
 
 .col-data-header {
-  width: 120px;
+  width: 15%;
 }
 .col-data-content {
   text-align: center;
 }
 
-.col-acoes {
+.col-acoes-header {
   width: 10%;
+}
+.col-acoes {
   text-align: center;
 }
 
