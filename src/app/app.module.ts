@@ -1,19 +1,33 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import {SelectButtonModule} from 'primeng/selectbutton';
+import {DropdownModule} from 'primeng/dropdown';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
+import { TableModule } from 'primeng/table';
+import { TooltipModule } from 'primeng/tooltip';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { CalendarModule } from 'primeng/calendar';
+import {CurrencyMaskModule} from 'ng2-currency-mask';
+
 import { AppComponent } from './app.component';
-import {TableModule} from 'primeng/table';
-import {TooltipModule} from 'primeng/tooltip';
+import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-cadastro.component';
 import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos-pesquisa.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { PessoasPesquisaComponent } from './pessoas-pesquisa/pessoas-pesquisa.component';
 
 
 @NgModule({
-  declarations: [AppComponent, LancamentosPesquisaComponent, NavbarComponent, PessoasPesquisaComponent],
-  imports: [BrowserModule, InputTextModule, ButtonModule, TableModule, TooltipModule],
+  declarations: [AppComponent, LancamentosPesquisaComponent, NavbarComponent,
+    PessoasPesquisaComponent, LancamentoCadastroComponent],
+  imports: [BrowserModule, BrowserAnimationsModule, InputTextModule,
+    ButtonModule, TableModule, TooltipModule,
+    InputTextareaModule, CalendarModule, SelectButtonModule,
+    DropdownModule, CurrencyMaskModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
