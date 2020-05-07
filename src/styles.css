@@ -47,7 +47,7 @@ label {
   margin: 1px !important;
 }
 
-.ui-button, body .ui-button {
+body .botaoApp {
   margin: 4px;
 }
 
