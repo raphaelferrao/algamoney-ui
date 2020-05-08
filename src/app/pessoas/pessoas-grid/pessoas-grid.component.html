@@ -25,5 +25,12 @@
             <button pButton icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top"></button>
         </td>
     </tr>
+    <ng-template pTemplate="emptymessage" let-columns>
+      <tr>
+          <td [attr.colspan]="5">
+            Nenhuma pessoa encontrada.
+          </td>
+      </tr>
+    </ng-template>
   </ng-template>
 </p-table>
