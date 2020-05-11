@@ -9,7 +9,6 @@ import { TooltipModule } from 'primeng/tooltip';
 import { InputMaskModule } from 'primeng/inputmask';
 import { TableModule } from 'primeng/table';
 
-import { PessoasGridComponent } from './pessoas-grid/pessoas-grid.component';
 import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.component';
 import { PessoasPesquisaComponent } from './pessoas-pesquisa/pessoas-pesquisa.component';
 import { SharedModule } from './../shared/shared.module';
@@ -28,8 +27,7 @@ import { SharedModule } from './../shared/shared.module';
   ],
   declarations: [
     PessoasPesquisaComponent,
-    PessoaCadastroComponent,
-    PessoasGridComponent
+    PessoaCadastroComponent
   ],
   exports: [
     PessoasPesquisaComponent,

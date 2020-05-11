@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { LazyLoadEvent } from 'primeng/api';
+import { LancamentoService, LancamentoFiltro } from './../lancamento.service';
 
 @Component({
   selector: 'app-lancamentos-pesquisa',
@@ -8,25 +10,29 @@ import { Component, OnInit } from '@angular/core';
 export class LancamentosPesquisaComponent implements OnInit {
 
     lancamentos: any[];
+    totalRegistros: 0;
+    filtro = new LancamentoFiltro();
 
     ngOnInit(): void {
+    }
 
-      this.lancamentos = [
-        { tipo: 'DESPESA', descricao: 'Compra de pão', dataVencimento: new Date(2017, 5, 30),
-          dataPagamento: null, valor: 4.55, pessoa: 'Padaria do José' },
-        { tipo: 'RECEITA', descricao: 'Venda de software', dataVencimento: new Date(2017, 5, 10),
-          dataPagamento: new Date(2017, 5, 30), valor: 80000, pessoa: 'Atacado Brasil' },
-        { tipo: 'DESPESA', descricao: 'Impostos', dataVencimento: new Date(2017, 6, 20),
-          dataPagamento: null, valor: 14312, pessoa: 'Ministério da Fazenda' },
-        { tipo: 'DESPESA', descricao: 'Mensalidade de escola', dataVencimento: new Date(2017, 5, 5),
-          dataPagamento: new Date(2017, 4, 30), valor: 800, pessoa: 'Escola Abelha Rainha' },
-        { tipo: 'RECEITA', descricao: 'Venda de carro', dataVencimento: new Date(2017, 7, 18),
-          dataPagamento: null, valor: 55000, pessoa: 'Sebastião Souza' },
-        { tipo: 'DESPESA', descricao: 'Aluguel', dataVencimento: new Date(2017, 6, 10),
-          dataPagamento: new Date(2017, 6, 9), valor: 1750, pessoa: 'Casa Nova Imóveis' },
-        { tipo: 'DESPESA', descricao: 'Mensalidade musculação', dataVencimento: new Date(2017, 6, 13),
-          dataPagamento: null, valor: 180, pessoa: 'Academia Top' }
-      ];
+    constructor(private lancamentoService: LancamentoService) {
+
+    }
+
+    pesquisar = (pagina = 0) => {
+      this.filtro.pagina = pagina;
+
+      this.lancamentoService.pesquisar(this.filtro)
+        .then( (result) => {
+          this.lancamentos = result.lancamentos;
+          this.totalRegistros = result.total;
+        });
+    }
+
+    aoMudarPagina = (event: LazyLoadEvent) => {
+      const pagina = event.first / event.rows;
+      this.pesquisar(pagina);
     }
 
 }
