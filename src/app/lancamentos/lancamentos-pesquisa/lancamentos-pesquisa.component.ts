@@ -67,7 +67,7 @@ export class LancamentosPesquisaComponent implements OnInit {
         })
         .catch( (error) => {
           this.errorHandlerService.handle(error);
-        });;
+        });
     }
 
 }
