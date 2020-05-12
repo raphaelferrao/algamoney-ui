@@ -10,6 +10,7 @@ import { ErrorHandlerService } from './error-handler.service';
 import { NavbarComponent } from './navbar/navbar.component';
 import { PessoaService } from '../pessoas/pessoa.service';
 import { LancamentoService } from '../lancamentos/lancamento.service';
+import { CategoriaService } from '../categorias/categoria.service';
 
 @NgModule({
   imports: [
@@ -26,6 +27,7 @@ import { LancamentoService } from '../lancamentos/lancamento.service';
     ConfirmationService,
     LancamentoService,
     PessoaService,
+    CategoriaService,
     ErrorHandlerService
   ],
   exports: [
