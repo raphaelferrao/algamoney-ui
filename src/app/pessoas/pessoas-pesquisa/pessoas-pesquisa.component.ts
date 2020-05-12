@@ -37,7 +37,7 @@ export class PessoasPesquisaComponent implements OnInit {
       })
       .catch( (error) => {
         this.errorHandlerService.handle(error);
-      });;
+      });
   }
 
   aoMudarPagina = (event: LazyLoadEvent) => {
@@ -62,6 +62,24 @@ export class PessoasPesquisaComponent implements OnInit {
           summary: 'Pessoa excluída com sucesso!'
         });
         this.grid.reset();
+      })
+      .catch( (error) => {
+        this.errorHandlerService.handle(error);
+      });
+  }
+
+  mudarStatus = (pessoa: any) => {
+    const novoStatus = !pessoa.ativo;
+
+    this.pessoaService.mudarStatus(pessoa.codigo, novoStatus)
+      .then(() => {
+        const acao = novoStatus ? 'ativada' : 'desativada';
+        pessoa.ativo = novoStatus;
+
+        this.messageService.add({
+          severity: 'success',
+          summary: `Pessoa ${acao} com sucesso!`
+        });
       })
       .catch( (error) => {
         this.errorHandlerService.handle(error);
