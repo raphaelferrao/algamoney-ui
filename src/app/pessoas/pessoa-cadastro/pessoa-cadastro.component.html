@@ -1,5 +1,5 @@
 <div class="container">
-  <form #f="ngForm" autocomplete="off">
+  <form #f="ngForm" autocomplete="off" (ngSubmit)="salvar(f)">
     <div class="ui-g">
       <div class="ui-g-12">
         <h1>Nova Pessoa</h1>
@@ -7,8 +7,8 @@
 
       <div class="ui-g-12 ui-fluid">
         <label>Nome</label>
-        <input pInputText type="text"
-          name="nome" ngModel #nome="ngModel"
+        <input pInputText type="text" name="nome"
+          [(ngModel)]="pessoa.nome" #nome="ngModel"
           required minlength="5" >
 
         <app-message [control]="nome" error="required"
@@ -19,8 +19,8 @@
 
       <div class="ui-g-12 ui-md-9 ui-fluid">
         <label>Logradouro</label>
-        <input pInputText type="text"
-          name="logradouro" ngModel #logradouro="ngModel"
+        <input pInputText type="text" name="logradouro"
+          [(ngModel)]="pessoa.endereco.logradouro" #logradouro="ngModel"
           required >
 
         <app-message [control]="logradouro" error="required"
@@ -28,8 +28,8 @@
       </div>
       <div class="ui-g-12 ui-md-3 ui-fluid">
         <label>Número</label>
-        <input pInputText type="text"
-          name="numero" ngModel #numero="ngModel"
+        <input pInputText type="text" name="numero"
+          [(ngModel)]="pessoa.endereco.numero" #numero="ngModel"
           required >
 
         <app-message [control]="numero" error="required"
@@ -38,21 +38,21 @@
 
       <div class="ui-g-12 ui-md-4 ui-fluid">
         <label>Complemento</label>
-        <input pInputText type="text"
-          name="complemento" ngModel #complemento="ngModel">
+        <input pInputText type="text" name="complemento"
+          [(ngModel)]="pessoa.endereco.complemento" #complemento="ngModel">
       </div>
       <div class="ui-g-12 ui-md-4 ui-fluid">
         <label>Bairro</label>
-        <input pInputText type="text"
-          name="bairro" ngModel #bairro="ngModel"
+        <input pInputText type="text" name="bairro"
+          [(ngModel)]="pessoa.endereco.bairro" #bairro="ngModel"
           required >
         <app-message [control]="bairro" error="required"
           text="Informe um bairro!"></app-message>
       </div>
       <div class="ui-g-12 ui-md-4 ui-fluid">
         <label>CEP</label>
-        <p-inputMask mask="99999-999"
-          name="cep" ngModel #cep="ngModel"
+        <p-inputMask mask="99999-999" name="cep"
+          [(ngModel)]="pessoa.endereco.cep" #cep="ngModel"
           required ></p-inputMask>
         <app-message [control]="cep" error="required"
           text="Informe um cep!"></app-message>
@@ -60,24 +60,33 @@
 
       <div class="ui-g-12 ui-md-6 ui-fluid">
         <label>Cidade</label>
-        <input pInputText type="text"
-          name="cidade" ngModel #cidade="ngModel"
+        <input pInputText type="text" name="cidade"
+          [(ngModel)]="pessoa.endereco.cidade" #cidade="ngModel"
           required >
         <app-message [control]="cidade" error="required"
           text="Informe uma cidade!"></app-message>
       </div>
       <div class="ui-g-12 ui-md-6 ui-fluid">
         <label>Estado</label>
-        <input pInputText type="text"
-          name="estado" ngModel #estado="ngModel"
-          required >
+        <input pInputText type="text" name="estado"
+          [(ngModel)]="pessoa.endereco.siglaUf" #estado="ngModel"
+          required minlength="2" maxlength="2" >
+
         <app-message [control]="estado" error="required"
           text="Informe um estado!"></app-message>
+        <app-message [control]="estado" error="minlength"
+          text="Mínimo de {{estado.errors?.minlength?.requiredLength}} caracteres."></app-message>
+        <app-message [control]="estado" error="minlength"
+          text="Máximo de {{estado.errors?.maxlength?.requiredLength}} caracteres."></app-message>
       </div>
 
       <div class="ui-g-12">
-        <button pButton type="submit" label="Salvar" class="botaoApp" [disabled]="f.invalid" ></button>
-        <button pButton type="button" label="Novo" class="botaoApp ui-button-info"></button>
+        <button pButton type="submit" label="Salvar" class="botaoApp" [disabled]="f.invalid || salvando" >
+          <span [hidden]="!salvando">
+            <i class="pi pi-spinner pi-spin"></i>
+          </span>
+        </button>
+        <button pButton type="button" label="Novo" class="botaoApp ui-button-info" [disabled]="salvando"></button>
         <a href="javascript:;">Voltar para a pesquisa</a>
       </div>
     </div>

@@ -1,18 +1,20 @@
 <div class="container">
-  <form #f="ngForm" autocomplete="off" >
+  <form #f="ngForm" autocomplete="off" (ngSubmit)="salvar(f)"  >
     <div class="ui-g">
       <div class="ui-g-12">
         <h1>Novo Lançamento</h1>
       </div>
 
       <div class="ui-g-12">
-        <p-selectButton [options]="tipos" #tipo></p-selectButton>
+        <p-selectButton [options]="tipos" name="tipo"
+          [(ngModel)]="lancamento.tipo" #tipo></p-selectButton>
       </div>
 
       <div class="ui-g-6 ui-md-3 ui-fluid">
         <label>Vencimento</label>
-        <p-calendar dateFormat="dd/mm/yy" [showIcon]="true"
-          name="vencimento" ngModel #vencimento="ngModel"
+        <p-calendar dateFormat="dd/mm/yy" [showIcon]="true" name="vencimento"
+          [yearNavigator]="true" yearRange="2000:2099" [monthNavigator]="true"
+          [(ngModel)]="lancamento.dataVencimento" #vencimento="ngModel"
           required ></p-calendar>
 
         <app-message [control]="vencimento" error="required"
@@ -20,13 +22,15 @@
       </div>
       <div class="ui-g-6 ui-md-3 ui-fluid">
         <label>{{ tipo.value === 'RECEITA' ? 'Recebimento' : 'Pagamento'}}</label>
-        <p-calendar dateFormat="dd/mm/yy" [showIcon]="true" ></p-calendar>
+        <p-calendar dateFormat="dd/mm/yy" [showIcon]="true" name="pagamento"
+          [yearNavigator]="true" yearRange="2000:2099" [monthNavigator]="true"
+          [(ngModel)]="lancamento.dataPagamento" #pagamento="ngModel" ></p-calendar>
       </div>
 
       <div class="ui-g-12 ui-md-9 ui-fluid">
         <label>Descrição</label>
-        <input pInputText type="text"
-          name="descricao" ngModel #descricao="ngModel"
+        <input pInputText type="text" name="descricao"
+          [(ngModel)]="lancamento.descricao" #descricao="ngModel"
           required minlength="5" >
 
         <app-message [control]="descricao" error="required"
@@ -36,9 +40,9 @@
       </div>
       <div class="ui-g-12 ui-md-3 ui-fluid">
         <label>Valor</label>
-        <input pInputText type="text" placeholder="0,00"
+        <input pInputText type="text" placeholder="0,00" name="valor"
           currencyMask [options]="{ prefix: 'R$', thousands: '.', decimal: ',', allowNegative: false }"
-          name="valor" ngModel #valor="ngModel"
+          [(ngModel)]="lancamento.valor" #valor="ngModel"
           required >
         <app-message [control]="valor" error="required"
           text="Informe um valor!"></app-message>
@@ -47,25 +51,30 @@
       <div class="ui-g-12 ui-md-6 ui-fluid">
         <label>Categoria</label>
         <p-dropdown [options]="categorias" placeholder="Selecione" optionLabel="label"
-          name="categorias" ngModel
+          name="categorias" [(ngModel)]="lancamento.categoria"
           required ></p-dropdown>
       </div>
       <div class="ui-g-12 ui-md-6 ui-fluid">
         <label>Pessoa</label>
         <p-dropdown [options]="pessoas" placeholder="Selecione" [filter]="true" optionLabel="label"
-          name="pessoas" ngModel
-          required ></p-dropdown>
+          name="pessoas" [(ngModel)]="lancamento.pessoa"
+          required >
+        </p-dropdown>
       </div>
 
       <div class="ui-g-12 ui-fluid">
         <label>Observação</label>
-        <textarea pInputTextarea rows="3"
-          name="observacao" ngModel #observacao="ngModel" ></textarea>
+        <textarea pInputTextarea rows="3" name="observacao"
+          [(ngModel)]="lancamento.observacao" #observacao="ngModel" ></textarea>
       </div>
 
       <div class="ui-g-12">
-        <button pButton type="submit" label="Salvar" class="botaoApp" [disabled]="f.invalid" ></button>
-        <button pButton type="button" label="Novo" class="botaoApp ui-button-info"></button>
+        <button pButton type="submit" label="Salvar" class="botaoApp" [disabled]="f.invalid || salvando" >
+          <span [hidden]="!salvando">
+            <i class="pi pi-spinner pi-spin"></i>
+          </span>
+        </button>
+        <button pButton type="button" label="Novo" class="botaoApp ui-button-info" [disabled]="salvando"></button>
         <a href="javascript:;">Voltar para a pesquisa</a>
       </div>
     </div>
