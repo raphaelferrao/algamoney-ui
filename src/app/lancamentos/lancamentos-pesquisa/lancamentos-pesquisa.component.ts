@@ -3,6 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { LazyLoadEvent, MessageService, ConfirmationService } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { LancamentoService, LancamentoFiltro } from './../lancamento.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-lancamentos-pesquisa',
@@ -17,16 +18,18 @@ export class LancamentosPesquisaComponent implements OnInit {
 
     @ViewChild('tabela', {static: true}) grid: Table;
 
-    ngOnInit(): void {
-    }
-
     constructor(
       private lancamentoService: LancamentoService,
       private messageService: MessageService,
       private confirmationService: ConfirmationService,
-      private errorHandlerService: ErrorHandlerService
+      private errorHandlerService: ErrorHandlerService,
+      private title: Title
     ) {
 
+    }
+
+    ngOnInit(): void {
+      this.title.setTitle('Pesquisa de Lançamentos');
     }
 
     pesquisar = (pagina = 0) => {

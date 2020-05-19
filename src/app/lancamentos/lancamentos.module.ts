@@ -1,3 +1,4 @@
+import { LancamentosRoutingModule } from './lancamentos-routing.module';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -19,6 +20,8 @@ import { SharedModule } from './../shared/shared.module';
   imports: [
     CommonModule,
     FormsModule,
+    LancamentosRoutingModule,
+
     SelectButtonModule,
     CalendarModule,
     InputTextModule,
@@ -34,8 +37,7 @@ import { SharedModule } from './../shared/shared.module';
     LancamentosPesquisaComponent
   ],
   exports: [
-    LancamentoCadastroComponent,
-    LancamentosPesquisaComponent
+
   ]
 })
 export class LancamentosModule { }

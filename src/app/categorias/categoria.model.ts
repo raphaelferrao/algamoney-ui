@@ -1,8 +1,10 @@
 export class Categoria {
 
   codigo: number;
-  label: string;
   value: string;
+
+  label: string;
+  nome: string;
 
   constructor() {
 

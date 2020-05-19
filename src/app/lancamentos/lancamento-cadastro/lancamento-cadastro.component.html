@@ -2,7 +2,7 @@
   <form #f="ngForm" autocomplete="off" (ngSubmit)="salvar(f)"  >
     <div class="ui-g">
       <div class="ui-g-12">
-        <h1>Novo Lançamento</h1>
+        <h1>{{ editando ? 'Edição de': 'Novo' }} Lançamento</h1>
       </div>
 
       <div class="ui-g-12">
@@ -74,8 +74,12 @@
             <i class="pi pi-spinner pi-spin"></i>
           </span>
         </button>
-        <button pButton type="button" label="Novo" class="botaoApp ui-button-info" [disabled]="salvando"></button>
-        <a href="javascript:;">Voltar para a pesquisa</a>
+
+        <button pButton type="button" label="Novo"
+          class="botaoApp ui-button-info" [disabled]="salvando"
+          (click)="novo(f)" ></button>
+
+        <a routerLink="/lancamentos">Voltar para a pesquisa</a>
       </div>
     </div>
   </form>

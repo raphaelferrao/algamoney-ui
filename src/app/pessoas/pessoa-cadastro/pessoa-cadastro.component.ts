@@ -1,3 +1,5 @@
+import { Title } from '@angular/platform-browser';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
@@ -18,30 +20,87 @@ export class PessoaCadastroComponent implements OnInit {
   pessoa = new Pessoa();
 
   constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private title: Title,
     private errorHandlerService: ErrorHandlerService,
     private messageService: MessageService,
     private pessoaService: PessoaService
   ) { }
 
   ngOnInit() {
+
+    const { codigo } = this.route.snapshot.params;
+    if (codigo) {
+      this.obterPessoa(codigo);
+      this.title.setTitle('Edição de Pessoa');
+    } else {
+      this.title.setTitle('Nova Pessoa');
+    }
   }
 
-  salvar(form: FormControl) {
+  salvar = (form: FormControl) => {
+    if ( this.editando ) {
+      this.atualizarPessoa(form);
+    } else {
+      this.adicionarPessoa(form);
+    }
+  }
+
+  adicionarPessoa(form: FormControl) {
     this.salvando = true;
     this.pessoaService.adicionar(this.pessoa)
-      .then( (resultado) => {
+      .then( (pessoaCriada) => {
         this.messageService.add({
           severity: 'success',
           summary: 'Pessoa adicionada com sucesso!'
         });
-        form.reset();
-        this.pessoa = new Pessoa();
+        this.router.navigate(['/pessoas', pessoaCriada.codigo]);
         this.salvando = false;
       })
       .catch( (error) => {
         this.salvando = false;
         this.errorHandlerService.handle(error);
       });
+  }
+
+  atualizarPessoa = (form: FormControl) => {
+    this.salvando = true;
+    this.pessoaService.atualizar(this.pessoa)
+      .then( (pessoaAlterada) => {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Pessoa alterada com sucesso!'
+        });
+        this.pessoa = pessoaAlterada;
+        this.salvando = false;
+      })
+      .catch( (error) => {
+        this.salvando = false;
+        this.errorHandlerService.handle(error);
+      });
+  }
+
+  obterPessoa = (codigo: number) => {
+    this.pessoaService.buscarPorCodigo(codigo)
+      .then( (pessoaEncontrada) => {
+        this.pessoa = pessoaEncontrada;
+      })
+      .catch( (error) => {
+        this.errorHandlerService.handle(error);
+      });
+  }
+
+  novo = (form: FormControl) => {
+    form.reset();
+    setTimeout(() => {
+      this.pessoa = new Pessoa();
+    }, 1);
+    this.router.navigate(['/pessoas/novo']);
+  }
+
+  get editando() {
+    return Boolean(this.pessoa.codigo);
   }
 
 }
