@@ -1,3 +1,4 @@
+import { SegurancaModule } from './../seguranca/seguranca.module';
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -20,7 +21,8 @@ import { Title } from '@angular/platform-browser';
     CommonModule,
     ToastModule,
     ConfirmDialogModule,
-    RouterModule
+    RouterModule,
+    SegurancaModule
   ],
   declarations: [
     NavbarComponent,
@@ -39,7 +41,8 @@ import { Title } from '@angular/platform-browser';
   exports: [
     NavbarComponent,
     ToastModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    SegurancaModule
   ]
 })
 export class CoreModule { }

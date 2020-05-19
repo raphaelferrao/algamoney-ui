@@ -1,0 +1,33 @@
+<div class="container" style="max-width: 400px; margin: auto">
+    <form #f="ngForm" autocomplete="off" (ngSubmit)="login(f)" >
+      <div class="ui-g-12">
+        <h1>Login</h1>
+      </div>
+
+      <div class="ui-g-12 ui-fluid">
+        <input type="email" id="email" name="email" placeholder="E-mail"
+          pInputText [(ngModel)]="email" #emailInput="ngModel" required email />
+
+        <app-message [control]="emailInput" error="required"
+          text="Informe um e-mail!"></app-message>
+        <app-message [control]="emailInput" error="email"
+          text="Informe um e-mail válido!"></app-message>
+      </div>
+
+      <div class="ui-g-12 ui-fluid">
+        <input type="password" name="senha" id="senha" placeholder="Senha"
+          pInputText [(ngModel)]="senha" #senhaInput="ngModel" required />
+
+        <app-message [control]="senhaInput" error="required"
+          text="Informe uma senha!"></app-message>
+      </div>
+
+      <div class="ui-g-12">
+        <button pButton type="submit" label="Login" class="botaoApp" [disabled]="f.invalid || logando" >
+          <span [hidden]="!logando">
+            <i class="pi pi-spinner pi-spin"></i>
+          </span>
+        </button>
+      </div>
+    </form>
+</div>
