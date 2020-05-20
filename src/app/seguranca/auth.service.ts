@@ -24,12 +24,14 @@ export class AuthService {
 
     const body = `username=${usuario}&password=${senha}&grant_type=password`;
 
-    return this.http.post(this.oauthTokenUrl, body, {headers})
+    return this.http.post(this.oauthTokenUrl, body, { headers, withCredentials: true})
       .toPromise()
       .then(response => {
+        console.log('Login realizado com sucesso!');
         this.armazenarToken((response as any).access_token);
       })
       .catch(response => {
+        console.error('Erro ao realizar login', response);
         if ( response.status === 400 ) {
           const responseError = response.error;
           if (responseError.error === 'invalid_grant') {
@@ -54,12 +56,38 @@ export class AuthService {
     }
   }
 
+  isAccessTokenInvalido = () => {
+    const token = localStorage.getItem('token');
+
+    return !token || this.jwtHelper.isTokenExpired(token);
+  }
+
   temPermissao = (permissao: string) => {
     return this.jwtPayload && this.jwtPayload.authorities.includes(permissao);
   }
 
   obterNomeUsuarioLogado = () => {
     return this.jwtPayload ? this.jwtPayload.nome : '';
+  }
+
+  obterNovoAccessToken = (): Promise<void> => {
+    const headers = new HttpHeaders()
+      .append('Authorization', 'Basic YW5ndWxhcjpAbmd1bEBy')
+      .append('Content-Type', 'application/x-www-form-urlencoded');
+
+    const body = 'grant_type=refresh_token';
+
+    return this.http.post(this.oauthTokenUrl, body, { headers, withCredentials: true })
+      .toPromise()
+      .then(response => {
+        this.armazenarToken((response as any).access_token);
+        console.log('Novo access token criado!');
+        return Promise.resolve(null);
+      })
+      .then(response => {
+        console.error('Erro ao renovar token.', response);
+        return Promise.resolve(null);
+      });
   }
 
 }

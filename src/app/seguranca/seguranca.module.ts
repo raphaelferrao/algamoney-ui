@@ -1,12 +1,14 @@
-import { ButtonModule } from 'primeng/button';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { JwtModule, JwtHelperService } from '@auth0/angular-jwt';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
+import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 
 import { SharedModule } from './../shared/shared.module';
+import { MoneyHttpInterceptor } from './money-http-interceptor';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { SegurancaRoutingModule } from './seguranca-routing.module';
 
@@ -35,7 +37,12 @@ export function tokenGetter(): string {
     LoginFormComponent
   ],
   providers: [
-    JwtHelperService
+    JwtHelperService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: MoneyHttpInterceptor,
+      multi: true
+    }
   ]
 })
 export class SegurancaModule { }
