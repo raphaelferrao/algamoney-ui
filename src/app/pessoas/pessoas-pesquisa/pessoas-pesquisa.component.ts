@@ -1,3 +1,4 @@
+import { AuthService } from './../../seguranca/auth.service';
 import { Title } from '@angular/platform-browser';
 import { Component, OnInit, ViewChild } from '@angular/core';
 
@@ -25,6 +26,7 @@ export class PessoasPesquisaComponent implements OnInit {
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
     private errorHandlerService: ErrorHandlerService,
+    private authService: AuthService,
     private title: Title
   ) { }
 
@@ -89,6 +91,10 @@ export class PessoasPesquisaComponent implements OnInit {
       .catch( (error) => {
         this.errorHandlerService.handle(error);
       });
+  }
+
+  temPermissao = (permissao: string) => {
+    return this.authService.temPermissao(permissao);
   }
 
 }

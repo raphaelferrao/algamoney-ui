@@ -1,9 +1,12 @@
-import { ErrorHandlerService } from './../../core/error-handler.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Title } from '@angular/platform-browser';
+import { AuthService } from './../../seguranca/auth.service';
+
 import { LazyLoadEvent, MessageService, ConfirmationService } from 'primeng/api';
 import { Table } from 'primeng/table';
+
+import { ErrorHandlerService } from './../../core/error-handler.service';
 import { LancamentoService, LancamentoFiltro } from './../lancamento.service';
-import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-lancamentos-pesquisa',
@@ -23,6 +26,7 @@ export class LancamentosPesquisaComponent implements OnInit {
       private messageService: MessageService,
       private confirmationService: ConfirmationService,
       private errorHandlerService: ErrorHandlerService,
+      private authService: AuthService,
       private title: Title
     ) {
 
@@ -71,6 +75,10 @@ export class LancamentosPesquisaComponent implements OnInit {
         .catch( (error) => {
           this.errorHandlerService.handle(error);
         });
+    }
+
+    temPermissao = (permissao: string) => {
+      return this.authService.temPermissao(permissao);
     }
 
 }
