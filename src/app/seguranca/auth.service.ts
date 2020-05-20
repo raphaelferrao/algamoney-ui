@@ -8,6 +8,7 @@ import { Injectable } from '@angular/core';
 export class AuthService {
 
   private oauthTokenUrl = 'http://localhost:8090/oauth/token';
+  private tokensRevokeUrl = 'http://localhost:8090/tokens/revoke';
   jwtPayload: any;
 
   constructor(
@@ -97,6 +98,26 @@ export class AuthService {
       .catch(response => {
         console.error('Erro ao renovar token.', response);
         return Promise.resolve(null);
+      });
+  }
+
+  limparAccessToken = () => {
+    localStorage.removeItem('token');
+    this.jwtPayload = null;
+  }
+
+  logout = () => {
+    const headers = new HttpHeaders()
+      .append('Authorization', 'Basic YW5ndWxhcjpAbmd1bEBy');
+
+    return this.http.delete(this.tokensRevokeUrl, { headers, withCredentials: true })
+      .toPromise()
+      .then(() => {
+        console.log('Logout realizado com sucesso!');
+        this.limparAccessToken();
+      })
+      .catch(response => {
+        console.error('Erro ao realizar logout.', response);
       });
   }
 

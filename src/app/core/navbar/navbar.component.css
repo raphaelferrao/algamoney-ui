@@ -36,6 +36,7 @@
 .navbar-menuitem a {
   color: #c0bbb7;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .navbar-menuitem a:hover {
