@@ -66,6 +66,16 @@ export class AuthService {
     return this.jwtPayload && this.jwtPayload.authorities.includes(permissao);
   }
 
+  temAlgumaPermissao = (roles: string[]) => {
+    let temPermissao = null;
+
+    if (roles) {
+      temPermissao = roles.find( (role) => this.temPermissao(role) );
+    }
+
+    return temPermissao || false;
+  }
+
   obterNomeUsuarioLogado = () => {
     return this.jwtPayload ? this.jwtPayload.nome : '';
   }
