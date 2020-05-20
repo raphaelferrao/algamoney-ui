@@ -94,7 +94,7 @@ export class AuthService {
         console.log('Novo access token criado!');
         return Promise.resolve(null);
       })
-      .then(response => {
+      .catch(response => {
         console.error('Erro ao renovar token.', response);
         return Promise.resolve(null);
       });
