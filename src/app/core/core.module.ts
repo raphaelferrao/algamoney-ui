@@ -1,3 +1,4 @@
+import { AuthService } from './../seguranca/auth.service';
 import { SegurancaModule } from './../seguranca/seguranca.module';
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -36,7 +37,8 @@ import { Title } from '@angular/platform-browser';
     LancamentoService,
     PessoaService,
     CategoriaService,
-    ErrorHandlerService
+    ErrorHandlerService,
+    AuthService
   ],
   exports: [
     NavbarComponent,

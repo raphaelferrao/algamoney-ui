@@ -1,29 +1,31 @@
 <div class="container" style="max-width: 400px; margin: auto">
-    <form #f="ngForm" autocomplete="off" (ngSubmit)="login(f)" >
+    <form #f="ngForm" autocomplete="off" >
       <div class="ui-g-12">
         <h1>Login</h1>
       </div>
 
       <div class="ui-g-12 ui-fluid">
-        <input type="email" id="email" name="email" placeholder="E-mail"
-          pInputText [(ngModel)]="email" #emailInput="ngModel" required email />
+        <input type="email" id="usuario" name="usuario" placeholder="E-mail"
+          pInputText ngModel #usuario="ngModel" required email autofocus />
 
-        <app-message [control]="emailInput" error="required"
+        <app-message [control]="usuario" error="required"
           text="Informe um e-mail!"></app-message>
-        <app-message [control]="emailInput" error="email"
+        <app-message [control]="usuario" error="email"
           text="Informe um e-mail válido!"></app-message>
       </div>
 
       <div class="ui-g-12 ui-fluid">
         <input type="password" name="senha" id="senha" placeholder="Senha"
-          pInputText [(ngModel)]="senha" #senhaInput="ngModel" required />
+          pInputText ngModel #senha="ngModel" required />
 
-        <app-message [control]="senhaInput" error="required"
+        <app-message [control]="senha" error="required"
           text="Informe uma senha!"></app-message>
       </div>
 
       <div class="ui-g-12">
-        <button pButton type="submit" label="Login" class="botaoApp" [disabled]="f.invalid || logando" >
+        <button pButton type="submit" label="Login" class="botaoApp"
+          [disabled]="f.invalid || logando"
+          (click)="login(usuario.value, senha.value); senha.reset();" >
           <span [hidden]="!logando">
             <i class="pi pi-spinner pi-spin"></i>
           </span>

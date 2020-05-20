@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
+
+import { ErrorHandlerService } from './../../core/error-handler.service';
+import { AuthService } from './../auth.service';
 
 @Component({
   selector: 'app-login-form',
@@ -8,19 +12,28 @@ import { FormControl } from '@angular/forms';
 })
 export class LoginFormComponent implements OnInit {
 
-  email: string;
-  senha: string;
   logando = false;
 
   constructor(
-
+    private router: Router,
+    private authService: AuthService,
+    private errorHandlerService: ErrorHandlerService
   ) { }
 
   ngOnInit() {
 
   }
 
-  login = (form: FormControl) => {
+  login = (usuario: string, senha: string) => {
+    this.logando = true;
+    this.authService.login(usuario, senha)
+      .then( (resultado) => {
+        this.router.navigate(['/lancamentos']);
+      })
+      .catch( (error) => {
+        this.logando = false;
+        this.errorHandlerService.handle(error);
+      });
   }
 
 }
