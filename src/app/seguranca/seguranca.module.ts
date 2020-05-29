@@ -12,6 +12,7 @@ import { SharedModule } from './../shared/shared.module';
 import { MoneyHttpInterceptor } from './money-http-interceptor';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { SegurancaRoutingModule } from './seguranca-routing.module';
+import { environment } from './../../environments/environment';
 
 export function tokenGetter(): string {
   return localStorage.getItem('token');
@@ -24,8 +25,8 @@ export function tokenGetter(): string {
     JwtModule.forRoot({
       config: {
         tokenGetter,
-        whitelistedDomains: ['localhost:8090'],
-        blacklistedRoutes: ['http://localhost:8090/oauth/token']
+        whitelistedDomains: [ environment.domain ],
+        blacklistedRoutes: [ `${environment.apiUrl}/oauth/token` ]
       }
     }),
     InputTextModule,
