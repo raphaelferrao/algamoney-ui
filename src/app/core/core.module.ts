@@ -13,6 +13,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { PessoaService } from '../pessoas/pessoa.service';
 import { LancamentoService } from '../lancamentos/lancamento.service';
 import { CategoriaService } from '../categorias/categoria.service';
+import { DashboardService } from '../dashboard/dashboard.service';
 import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component';
 import { AuthService } from './../seguranca/auth.service';
 import { SegurancaModule } from './../seguranca/seguranca.module';
@@ -39,6 +40,7 @@ import { NaoAutorizadoComponent } from './nao-autorizado.component';
     LancamentoService,
     PessoaService,
     CategoriaService,
+    DashboardService,
     ErrorHandlerService,
     AuthService
   ],
