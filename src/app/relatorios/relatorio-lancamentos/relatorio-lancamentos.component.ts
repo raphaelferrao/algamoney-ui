@@ -7,9 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RelatorioLancamentosComponent implements OnInit {
 
+  periodoInicio: Date;
+  periodoFim: Date;
+  salvando = false;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  gerar = () => {
+
   }
 
 }
