@@ -8,6 +8,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { MessageService } from 'primeng/api';
 import { ConfirmationService } from 'primeng/api';
 
+import { RelatoriosService } from './../relatorios/relatorios.service';
 import { ErrorHandlerService } from './error-handler.service';
 import { NavbarComponent } from './navbar/navbar.component';
 import { PessoaService } from '../pessoas/pessoa.service';
@@ -41,6 +42,7 @@ import { NaoAutorizadoComponent } from './nao-autorizado.component';
     PessoaService,
     CategoriaService,
     DashboardService,
+    RelatoriosService,
     ErrorHandlerService,
     AuthService
   ],
