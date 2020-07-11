@@ -18,6 +18,7 @@ export class PessoaCadastroComponent implements OnInit {
 
   salvando = false;
   pessoa = new Pessoa();
+  exibindoFormularioContato = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -101,6 +102,10 @@ export class PessoaCadastroComponent implements OnInit {
 
   get editando() {
     return Boolean(this.pessoa.codigo);
+  }
+
+  receiveExibirFormularioContato = (exibirFormularioContato: boolean) => {
+    this.exibindoFormularioContato = exibirFormularioContato;
   }
 
 }

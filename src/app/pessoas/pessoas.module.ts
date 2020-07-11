@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
+import { DialogModule } from 'primeng/dialog';
 import { PanelModule } from 'primeng/panel';
 import { InputTextModule } from 'primeng/inputtext';
 import { SelectButtonModule } from 'primeng/selectbutton';
@@ -23,6 +24,7 @@ import { SharedModule } from './../shared/shared.module';
     FormsModule,
     PessoasRoutingModule,
 
+    DialogModule,
     PanelModule,
     RouterModule,
     ButtonModule,
@@ -31,6 +33,7 @@ import { SharedModule } from './../shared/shared.module';
     TableModule,
     InputMaskModule,
     TooltipModule,
+
     SharedModule
   ],
   declarations: [

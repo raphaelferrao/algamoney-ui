@@ -80,7 +80,10 @@
           text="Máximo de {{estado.errors?.maxlength?.requiredLength}} caracteres."></app-message>
       </div>
 
-      <app-pessoa-contato [pessoa]="pessoa" ></app-pessoa-contato>
+      <app-pessoa-contato [pessoa]="pessoa"
+        (exibirFormularioContato)="receiveExibirFormularioContato($event)" >
+
+      </app-pessoa-contato>
 
       <div class="ui-g-12">
         <button pButton type="submit" label="Salvar" class="botaoApp" [disabled]="f.invalid || salvando" >
@@ -98,3 +101,7 @@
     </div>
   </form>
 </div>
+
+<p-dialog header="Novo Contato" [(visible)]="exibindoFormularioContato" modal="modal">
+
+</p-dialog>

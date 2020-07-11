@@ -1,5 +1,5 @@
 import { Pessoa } from './../pessoa.model';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter  } from '@angular/core';
 
 @Component({
   selector: 'app-pessoa-contato',
@@ -9,10 +9,15 @@ import { Component, OnInit, Input } from '@angular/core';
 export class PessoaContatoComponent implements OnInit {
 
   @Input() pessoa: Pessoa;
+  @Output() exibirFormularioContato = new EventEmitter<boolean>();
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  prepararNovoContato = () => {
+    this.exibirFormularioContato.emit(true);
   }
 
 }
