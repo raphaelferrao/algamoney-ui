@@ -13,6 +13,7 @@ import { TableModule } from 'primeng/table';
 
 import { PessoasRoutingModule } from './pessoas-routing.module';
 import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.component';
+import { PessoaContatoComponent } from './pessoa-contato/pessoa-contato.component';
 import { PessoasPesquisaComponent } from './pessoas-pesquisa/pessoas-pesquisa.component';
 import { SharedModule } from './../shared/shared.module';
 
@@ -34,7 +35,8 @@ import { SharedModule } from './../shared/shared.module';
   ],
   declarations: [
     PessoasPesquisaComponent,
-    PessoaCadastroComponent
+    PessoaCadastroComponent,
+    PessoaContatoComponent
   ],
   exports: [
 
