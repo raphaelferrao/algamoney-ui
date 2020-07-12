@@ -8,7 +8,7 @@ import { Component, OnInit, Input, Output, EventEmitter  } from '@angular/core';
 })
 export class PessoaContatoComponent implements OnInit {
 
-  @Input() pessoa: Pessoa;
+  @Input() contatos: Array<Contato>;
   exibirFormularioContato = false;
   contato: Contato;
   contatoIndex: number;
@@ -21,12 +21,12 @@ export class PessoaContatoComponent implements OnInit {
   prepararNovoContato = () => {
     this.exibirFormularioContato = true;
     this.contato = new Contato();
-    this.contatoIndex = this.pessoa.contatos.length;
+    this.contatoIndex = this.contatos.length;
   }
 
   receiveContato = (contatoFromChild: Contato) => {
     console.log('contatoFromChild', contatoFromChild);
-    this.pessoa.contatos[this.contatoIndex] = contatoFromChild;
+    this.contatos[this.contatoIndex] = contatoFromChild;
     this.exibirFormularioContato = false;
     this.contato = new Contato();
   }
@@ -43,7 +43,7 @@ export class PessoaContatoComponent implements OnInit {
   }
 
   removerContato = (contatoIndex: number) => {
-    this.pessoa.contatos.splice(contatoIndex, 1);
+    this.contatos.splice(contatoIndex, 1);
   }
 
 }

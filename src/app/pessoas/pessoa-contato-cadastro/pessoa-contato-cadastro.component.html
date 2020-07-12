@@ -2,7 +2,7 @@
   modal="modal" *ngIf="contato" (onHide)="onHideModal()" >
   <form #formContato="ngForm" (ngSubmit)="confirmarContato(formContato)" >
     <div class="ui-g-12 ui-fluid">
-      <label>Nome {{contatoIndex}}</label>
+      <label>Nome</label>
       <input pInputText type="text" name="nome" required
         [(ngModel)]="contato.nome" #contatoNome="ngModel" />
 
