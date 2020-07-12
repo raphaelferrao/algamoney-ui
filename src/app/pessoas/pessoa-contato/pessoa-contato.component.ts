@@ -42,4 +42,8 @@ export class PessoaContatoComponent implements OnInit {
     console.log('prepararEditarContato', this.contato, this.contatoIndex);
   }
 
+  removerContato = (contatoIndex: number) => {
+    this.pessoa.contatos.splice(contatoIndex, 1);
+  }
+
 }
