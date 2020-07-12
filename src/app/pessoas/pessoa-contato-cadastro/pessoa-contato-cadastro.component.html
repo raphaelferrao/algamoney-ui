@@ -1,9 +1,10 @@
-<p-dialog header="Novo Contato" [(visible)]="exibindoFormularioContato" modal="modal" >
+<p-dialog [header]="actionFormularioContato" [(visible)]="exibindoFormularioContato"
+  modal="modal" *ngIf="contato" (onHide)="onHideModal()" >
   <form #formContato="ngForm" (ngSubmit)="confirmarContato(formContato)" >
     <div class="ui-g-12 ui-fluid">
-      <label>Nome</label>
+      <label>Nome {{contatoIndex}}</label>
       <input pInputText type="text" name="nome" required
-        [(ngModel)]="novoContato.nome" #contatoNome="ngModel" />
+        [(ngModel)]="contato.nome" #contatoNome="ngModel" />
 
       <app-message [control]="contatoNome" error="required"
           text="Informe um nome!"></app-message>
@@ -12,7 +13,7 @@
     <div class="ui-g-12 ui-fluid">
       <label>Email</label>
       <input pInputText type="email" name="email" required email
-        [(ngModel)]="novoContato.email" #contatoEmail="ngModel" />
+        [(ngModel)]="contato.email" #contatoEmail="ngModel" />
 
       <app-message [control]="contatoEmail" error="required"
           text="Informe um email!"></app-message>
@@ -23,15 +24,12 @@
     <div class="ui-g-12 ui-fluid">
       <label>Telefone</label>
       <p-inputMask mask="(99) 99999-999?9" name="telefone"
-        [(ngModel)]="novoContato.telefone" #contatoTelefone="ngModel" ></p-inputMask>
+        [(ngModel)]="contato.telefone" #contatoTelefone="ngModel" ></p-inputMask>
     </div>
 
     <div class="ui-g-12">
       <button pButton type="submit" label="Confirmar" class="botaoApp"
-        [disabled]="formContato.invalid || salvando" >
-        <span [hidden]="!salvando">
-          <i class="pi pi-spinner pi-spin"></i>
-        </span>
+        [disabled]="formContato.invalid" >
       </button>
     </div>
   </form>

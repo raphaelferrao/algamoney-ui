@@ -10,6 +10,8 @@ export class PessoaContatoComponent implements OnInit {
 
   @Input() pessoa: Pessoa;
   exibirFormularioContato = false;
+  contato: Contato;
+  contatoIndex: number;
 
   constructor() { }
 
@@ -18,12 +20,26 @@ export class PessoaContatoComponent implements OnInit {
 
   prepararNovoContato = () => {
     this.exibirFormularioContato = true;
+    this.contato = new Contato();
+    this.contatoIndex = this.pessoa.contatos.length;
   }
 
-  receiveNovoContatoInserido = (novoContatoInserido: Contato) => {
-    console.log('receiveNovoContatoInserido', novoContatoInserido);
-    this.pessoa.contatos.push(novoContatoInserido);
+  receiveContato = (contatoFromChild: Contato) => {
+    console.log('contatoFromChild', contatoFromChild);
+    this.pessoa.contatos[this.contatoIndex] = contatoFromChild;
     this.exibirFormularioContato = false;
+    this.contato = new Contato();
+  }
+
+  receiveExibirFormularioContato = (exibirFormularioContatoChild: boolean) => {
+    this.exibirFormularioContato = exibirFormularioContatoChild;
+  }
+
+  prepararEditarContato = (contato: Contato, contatoIndex: number) => {
+    this.exibirFormularioContato = true;
+    this.contato = {...contato};
+    this.contatoIndex = contatoIndex;
+    console.log('prepararEditarContato', this.contato, this.contatoIndex);
   }
 
 }

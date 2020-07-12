@@ -2,6 +2,7 @@ import { FormControl } from '@angular/forms';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import { Contato } from './../pessoa.model';
+import { InvokeFunctionExpr } from '@angular/compiler';
 
 @Component({
   selector: 'app-pessoa-contato-cadastro',
@@ -11,26 +12,31 @@ import { Contato } from './../pessoa.model';
 export class PessoaContatoCadastroComponent implements OnInit {
 
   @Input() exibindoFormularioContato: boolean;
-  @Output() novoContatoInserido = new EventEmitter<Contato>();
+  @Input() contato: Contato;
+  @Input() contatoIndex: number;
 
-  novoContato: Contato;
-  salvando = false;
+  @Output() changeContatoEvent = new EventEmitter<Contato>();
+  @Output() changeExibirFormularioContatoEvent = new EventEmitter<boolean>();
 
   constructor() {
-    this.novoContato = new Contato();
   }
 
   ngOnInit() {
   }
 
   confirmarContato = (frm: FormControl) => {
-    this.salvando = true;
-    console.log('confirmarContato', this.novoContato);
-    this.novoContatoInserido.emit(this.novoContato);
-    this.novoContato = new Contato();
-    this.salvando = false;
+    console.log('confirmarContato', this.contato);
+    this.changeContatoEvent.emit(this.contato);
+    this.contato = new Contato();
     frm.reset();
   }
 
+  get actionFormularioContato() {
+    return this.contato.codigo ? 'Editando Contato' : 'Novo Contato';
+  }
+
+  onHideModal = () => {
+    this.changeExibirFormularioContatoEvent.emit(this.exibindoFormularioContato);
+  }
 
 }
