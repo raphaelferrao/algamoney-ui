@@ -80,9 +80,7 @@
           text="Máximo de {{estado.errors?.maxlength?.requiredLength}} caracteres."></app-message>
       </div>
 
-      <app-pessoa-contato [pessoa]="pessoa"
-        (exibirFormularioContato)="receiveExibirFormularioContato($event)" >
-
+      <app-pessoa-contato [pessoa]="pessoa" >
       </app-pessoa-contato>
 
       <div class="ui-g-12">
@@ -102,6 +100,3 @@
   </form>
 </div>
 
-<p-dialog header="Novo Contato" [(visible)]="exibindoFormularioContato" modal="modal">
-
-</p-dialog>

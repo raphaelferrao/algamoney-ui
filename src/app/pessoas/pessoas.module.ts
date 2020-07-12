@@ -17,6 +17,7 @@ import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.compo
 import { PessoaContatoComponent } from './pessoa-contato/pessoa-contato.component';
 import { PessoasPesquisaComponent } from './pessoas-pesquisa/pessoas-pesquisa.component';
 import { SharedModule } from './../shared/shared.module';
+import { PessoaContatoCadastroComponent } from './pessoa-contato-cadastro/pessoa-contato-cadastro.component';
 
 @NgModule({
   imports: [
@@ -39,7 +40,8 @@ import { SharedModule } from './../shared/shared.module';
   declarations: [
     PessoasPesquisaComponent,
     PessoaCadastroComponent,
-    PessoaContatoComponent
+    PessoaContatoComponent,
+    PessoaContatoCadastroComponent
   ],
   exports: [
 

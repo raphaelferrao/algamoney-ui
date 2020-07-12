@@ -9,7 +9,8 @@ import { Component, OnInit, Input, Output, EventEmitter  } from '@angular/core';
 export class PessoaContatoComponent implements OnInit {
 
   @Input() pessoa: Pessoa;
-  @Output() exibirFormularioContato = new EventEmitter<boolean>();
+  // @Output() exibirFormularioContato = new EventEmitter<boolean>();
+  exibirFormularioContato = false;
 
   constructor() { }
 
@@ -17,7 +18,15 @@ export class PessoaContatoComponent implements OnInit {
   }
 
   prepararNovoContato = () => {
-    this.exibirFormularioContato.emit(true);
+    this.exibirFormularioContato = true;
+    console.log('exibirFormularioContato', this.exibirFormularioContato);
+    // this.exibirFormularioContato.emit(true);
   }
+
+  /*
+  receiveExibirFormularioContato = (exibirFormularioContato: boolean) => {
+    this.exibindoFormularioContato = exibirFormularioContato;
+  }
+  */
 
 }

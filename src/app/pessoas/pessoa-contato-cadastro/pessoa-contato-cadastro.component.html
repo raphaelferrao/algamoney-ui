@@ -1,0 +1,38 @@
+<p-dialog header="Novo Contato" [(visible)]="exibindoFormularioContato" modal="modal" >
+  <form #formContato="ngForm" (ngSubmit)="salvarContato()" >
+    <div class="ui-g-12 ui-fluid">
+      <label>Nome</label>
+      <input pInputText type="text" name="nome" required
+        [(ngModel)]="novoContato.nome" #contatoNome="ngModel" />
+
+      <app-message [control]="contatoNome" error="required"
+          text="Informe um nome!"></app-message>
+    </div>
+
+    <div class="ui-g-12 ui-fluid">
+      <label>Email</label>
+      <input pInputText type="email" name="email" required email
+        [(ngModel)]="novoContato.email" #contatoEmail="ngModel" />
+
+      <app-message [control]="contatoEmail" error="required"
+          text="Informe um email!"></app-message>
+      <app-message [control]="contatoEmail" error="email"
+          text="Informe um email válido!"></app-message>
+    </div>
+
+    <div class="ui-g-12 ui-fluid">
+      <label>Telefone</label>
+      <p-inputMask mask="(99) 99999-999?9" name="telefone"
+        [(ngModel)]="novoContato.telefone" #contatoTelefone="ngModel" ></p-inputMask>
+    </div>
+
+    <div class="ui-g-12">
+      <button pButton type="submit" label="Confirmar" class="botaoApp"
+        [disabled]="formContato.invalid || salvando" >
+        <span [hidden]="!salvando">
+          <i class="pi pi-spinner pi-spin"></i>
+        </span>
+      </button>
+    </div>
+  </form>
+</p-dialog>
