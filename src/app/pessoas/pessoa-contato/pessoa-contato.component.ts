@@ -1,4 +1,4 @@
-import { Pessoa } from './../pessoa.model';
+import { Pessoa, Contato } from './../pessoa.model';
 import { Component, OnInit, Input, Output, EventEmitter  } from '@angular/core';
 
 @Component({
@@ -9,7 +9,6 @@ import { Component, OnInit, Input, Output, EventEmitter  } from '@angular/core';
 export class PessoaContatoComponent implements OnInit {
 
   @Input() pessoa: Pessoa;
-  // @Output() exibirFormularioContato = new EventEmitter<boolean>();
   exibirFormularioContato = false;
 
   constructor() { }
@@ -19,14 +18,12 @@ export class PessoaContatoComponent implements OnInit {
 
   prepararNovoContato = () => {
     this.exibirFormularioContato = true;
-    console.log('exibirFormularioContato', this.exibirFormularioContato);
-    // this.exibirFormularioContato.emit(true);
   }
 
-  /*
-  receiveExibirFormularioContato = (exibirFormularioContato: boolean) => {
-    this.exibindoFormularioContato = exibirFormularioContato;
+  receiveNovoContatoInserido = (novoContatoInserido: Contato) => {
+    console.log('receiveNovoContatoInserido', novoContatoInserido);
+    this.pessoa.contatos.push(novoContatoInserido);
+    this.exibirFormularioContato = false;
   }
-  */
 
 }

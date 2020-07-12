@@ -46,5 +46,7 @@
   </p-panel>
 </div>
 
-<app-pessoa-contato-cadastro [exibindoFormularioContato]="exibirFormularioContato" >
+<app-pessoa-contato-cadastro
+  [exibindoFormularioContato]="exibirFormularioContato"
+  (novoContatoInserido)="receiveNovoContatoInserido($event)" >
 </app-pessoa-contato-cadastro >
