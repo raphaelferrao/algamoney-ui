@@ -60,6 +60,7 @@ export class LancamentoCadastroComponent implements OnInit {
         this.categorias = resultado.map( categoria => {
           return { ...categoria, label: categoria.nome, value: categoria.codigo.toString() };
         });
+        console.log('categorias', this.categorias);
       })
       .catch( (error) => {
         this.errorHandlerService.handle(error);
@@ -72,7 +73,7 @@ export class LancamentoCadastroComponent implements OnInit {
         this.pessoas = resultado.map( pessoa => {
           return { ...pessoa, label: pessoa.nome, value: pessoa.codigo.toString() };
         });
-        console.log(this.pessoas);
+        console.log('pessoas', this.pessoas);
       })
       .catch( (error) => {
         this.errorHandlerService.handle(error);
@@ -126,6 +127,7 @@ export class LancamentoCadastroComponent implements OnInit {
     this.lancamentoService.buscarPorCodigo(codigo)
       .then( (lancamentoEncontrado) => {
         this.tratarAtributosParaPreencherDropdowns(lancamentoEncontrado);
+        console.log('lancamentoEncontrado', lancamentoEncontrado);
         this.lancamento = lancamentoEncontrado;
       })
       .catch( (error) => {
@@ -161,4 +163,7 @@ export class LancamentoCadastroComponent implements OnInit {
     return Boolean(this.lancamento.codigo);
   }
 
+  get urlUploadAnexo() {
+    return this.lancamentoService.urlUploadAnexo();
+  }
 }

@@ -58,14 +58,19 @@
         <label>Pessoa</label>
         <p-dropdown [options]="pessoas" placeholder="Selecione" [filter]="true" optionLabel="label"
           name="pessoas" [(ngModel)]="lancamento.pessoa"
-          required >
-        </p-dropdown>
+          required ></p-dropdown>
       </div>
 
       <div class="ui-g-12 ui-fluid">
         <label>Observação</label>
         <textarea pInputTextarea rows="3" name="observacao"
           [(ngModel)]="lancamento.observacao" #observacao="ngModel" ></textarea>
+      </div>
+
+      <div class="ui-g-offset-6 ui-g-6 ui-md-offset-10 ui-md-2 ui-fluid">
+        <p-fileUpload name="anexo" mode="basic" auto="true" maxFileSize="100000000"
+          chooseLabel="Anexar" accept="image/*,application/*" [url]="urlUploadAnexo" >
+        </p-fileUpload>
       </div>
 
       <div class="ui-g-12">
