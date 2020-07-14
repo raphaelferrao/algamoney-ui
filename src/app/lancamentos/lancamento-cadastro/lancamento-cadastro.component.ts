@@ -165,6 +165,10 @@ export class LancamentoCadastroComponent implements OnInit {
     this.lancamento.urlAnexo = anexo.url;
   }
 
+  erroUpload = (event) => {
+    this.errorHandlerService.handle('Erro ao tentar enviar anexo!');
+  }
+
   get editando() {
     return Boolean(this.lancamento.codigo);
   }
