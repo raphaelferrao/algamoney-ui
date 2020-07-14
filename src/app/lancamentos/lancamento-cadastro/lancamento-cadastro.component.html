@@ -67,10 +67,16 @@
           [(ngModel)]="lancamento.observacao" #observacao="ngModel" ></textarea>
       </div>
 
-      <div class="ui-g-offset-6 ui-g-6 ui-md-offset-10 ui-md-2 ui-fluid">
+      <div class="ui-g-offset-6 ui-g-6 ui-md-offset-10 ui-md-2 ui-fluid" *ngIf="!lancamento.anexo" >
         <p-fileUpload name="anexo" mode="basic" auto="true" maxFileSize="100000000"
-          chooseLabel="Anexar" accept="image/*,application/*" [url]="urlUploadAnexo" >
+          chooseLabel="Anexar" accept="image/*,application/*" [url]="urlUploadAnexo"
+          (onUpload)="aoTerminarUploadAnexo($event)" >
         </p-fileUpload>
+      </div>
+
+      <div class="ui-g-12 ui-fluid">
+        <a target="_blank" pTooltip="Baixar anexo" tooltipPosition="top"
+          [href]="lancamento.urlAnexo" >{{nomeAnexo}}</a>
       </div>
 
       <div class="ui-g-12">

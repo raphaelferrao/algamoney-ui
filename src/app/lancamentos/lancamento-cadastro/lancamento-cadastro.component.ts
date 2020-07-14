@@ -159,11 +159,25 @@ export class LancamentoCadastroComponent implements OnInit {
     }
   }
 
+  aoTerminarUploadAnexo = (event) => {
+    const anexo = event.originalEvent.body;
+    this.lancamento.anexo = anexo.nome;
+    this.lancamento.urlAnexo = anexo.url;
+  }
+
   get editando() {
     return Boolean(this.lancamento.codigo);
   }
 
   get urlUploadAnexo() {
     return this.lancamentoService.urlUploadAnexo();
+  }
+
+  get nomeAnexo() {
+    const nomeAnexo = this.lancamento.anexo;
+    if (nomeAnexo) {
+      return nomeAnexo.substring(nomeAnexo.indexOf('_')+1, nomeAnexo.length);
+    }
+    return '';
   }
 }
