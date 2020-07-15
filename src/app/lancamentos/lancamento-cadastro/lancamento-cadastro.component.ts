@@ -176,6 +176,11 @@ export class LancamentoCadastroComponent implements OnInit {
     this.uploadEmAndamento = false;
   }
 
+  removerAnexo = () => {
+    this.lancamento.anexo = null;
+    this.lancamento.urlAnexo = null;
+  }
+
   get editando() {
     return Boolean(this.lancamento.codigo);
   }

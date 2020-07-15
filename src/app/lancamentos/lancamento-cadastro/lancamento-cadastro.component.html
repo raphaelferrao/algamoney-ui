@@ -80,7 +80,12 @@
         <p-progressSpinner [hidden]="!uploadEmAndamento"  [style]="{ width: '25px', height: '25px' }"></p-progressSpinner>
       </div>
 
-      <div class="ui-g-12 ui-fluid" *ngIf="lancamento.urlAnexo" dir="rtl">
+      <div class="ui-g-12" *ngIf="lancamento.anexo" dir="rtl">
+        <button pButton type="button" class="ui-button-danger" icon="pi pi-times"
+          style="margin-left: 5px;"
+          pTooltip="Remover anexo" tooltipPosition="top" (click)="removerAnexo()" >
+        </button>
+
         <a target="_blank" pTooltip="Baixar anexo" tooltipPosition="top"
           [href]="lancamento.urlAnexo" >{{nomeAnexo}}</a>
       </div>
