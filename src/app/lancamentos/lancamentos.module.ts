@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { FileUploadModule } from 'primeng/fileupload';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
@@ -23,6 +24,7 @@ import { SharedModule } from './../shared/shared.module';
     FormsModule,
     LancamentosRoutingModule,
 
+    ProgressSpinnerModule,
     FileUploadModule,
     SelectButtonModule,
     CalendarModule,

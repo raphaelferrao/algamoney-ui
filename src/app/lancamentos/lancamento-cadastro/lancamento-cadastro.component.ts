@@ -29,6 +29,7 @@ export class LancamentoCadastroComponent implements OnInit {
   pessoas: Pessoa[];
   lancamento = new Lancamento();
   salvando = false;
+  uploadEmAndamento = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -159,14 +160,20 @@ export class LancamentoCadastroComponent implements OnInit {
     }
   }
 
+  antesUploadAnexo = (event) => {
+    this.uploadEmAndamento = true;
+  }
+
   aoTerminarUploadAnexo = (event) => {
     const anexo = event.originalEvent.body;
     this.lancamento.anexo = anexo.nome;
     this.lancamento.urlAnexo = anexo.url;
+    this.uploadEmAndamento = false;
   }
 
   erroUpload = (event) => {
     this.errorHandlerService.handle('Erro ao tentar enviar anexo!');
+    this.uploadEmAndamento = false;
   }
 
   get editando() {
